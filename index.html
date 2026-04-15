@@ -14,19 +14,9 @@
     --text-dark: #2c2416;
     --text-mid: #6b5a3e;
     --text-light: #a08c6e;
-    --rose: #e8a0a0;
-    --coral: #f2956e;
-    --amber: #f0c060;
-    --sage: #8faa88;
-    --blush: #f5d0c8;
-    --lavender: #c8b8e0;
-    --sky: #90c0d8;
-    --deep-blue: #4a6fa0;
     --shadow: rgba(44,36,22,0.08);
   }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
+  * { margin:0; padding:0; box-sizing:border-box; }
   body {
     background: var(--cream);
     font-family: 'Noto Serif JP', serif;
@@ -34,442 +24,261 @@
     min-height: 100vh;
     overflow-x: hidden;
   }
-
-  /* Background texture */
   body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background: 
+    content:'';
+    position:fixed;
+    inset:0;
+    background:
       radial-gradient(ellipse at 20% 20%, rgba(232,213,176,0.3) 0%, transparent 60%),
       radial-gradient(ellipse at 80% 80%, rgba(245,208,200,0.2) 0%, transparent 60%);
-    pointer-events: none;
-    z-index: 0;
+    pointer-events:none;
+    z-index:0;
   }
-
   .app {
-    position: relative;
-    z-index: 1;
-    max-width: 480px;
-    margin: 0 auto;
-    padding: 0 0 60px;
+    position:relative;
+    z-index:1;
+    max-width:480px;
+    margin:0 auto;
+    padding:0 0 60px;
   }
 
   /* Header */
   .header {
-    text-align: center;
-    padding: 48px 24px 32px;
-    border-bottom: 1px solid var(--gold-light);
+    text-align:center;
+    padding:48px 24px 28px;
+    border-bottom:1px solid var(--gold-light);
   }
-
-  .logo-mark {
-    width: 48px;
-    height: 48px;
-    margin: 0 auto 16px;
-  }
-
+  .logo-mark { width:48px; height:48px; margin:0 auto 16px; }
   .logo-text {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 28px;
-    font-weight: 300;
-    letter-spacing: 0.15em;
-    color: var(--text-dark);
+    font-family:'Cormorant Garamond',serif;
+    font-size:28px;
+    font-weight:300;
+    letter-spacing:0.15em;
+    color:var(--text-dark);
   }
-
-  .logo-text span {
-    color: var(--gold);
-  }
-
+  .logo-text span { color:var(--gold); }
   .logo-sub {
-    font-size: 10px;
-    letter-spacing: 0.3em;
-    color: var(--text-light);
-    margin-top: 6px;
-    text-transform: uppercase;
+    font-size:10px;
+    letter-spacing:0.3em;
+    color:var(--text-light);
+    margin-top:6px;
+    text-transform:uppercase;
   }
 
-  /* Stage indicator */
+  /* Stage bar */
   .stage-bar {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0;
-    padding: 24px 32px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:24px 32px;
   }
-
   .stage-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-    flex: 1;
-    opacity: 0.3;
-    transition: opacity 0.6s ease;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:6px;
+    flex:1;
+    opacity:0.3;
+    transition:opacity 0.6s ease;
   }
-
-  .stage-item.active { opacity: 1; }
-  .stage-item.done { opacity: 0.7; }
-
+  .stage-item.active { opacity:1; }
+  .stage-item.done { opacity:0.7; }
   .stage-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: var(--gold-light);
-    border: 1.5px solid var(--gold);
-    transition: all 0.6s ease;
+    width:10px; height:10px;
+    border-radius:50%;
+    background:var(--gold-light);
+    border:1.5px solid var(--gold);
+    transition:all 0.6s ease;
   }
-
   .stage-item.active .stage-dot {
-    background: var(--gold);
-    box-shadow: 0 0 12px rgba(201,169,110,0.5);
+    background:var(--gold);
+    box-shadow:0 0 12px rgba(201,169,110,0.5);
   }
-
-  .stage-item.done .stage-dot {
-    background: var(--gold);
-  }
-
-  .stage-line {
-    flex: 1;
-    height: 1px;
-    background: var(--gold-light);
-    margin-bottom: 16px;
-  }
-
-  .stage-label {
-    font-size: 9px;
-    letter-spacing: 0.2em;
-    color: var(--text-light);
-    text-align: center;
-  }
+  .stage-item.done .stage-dot { background:var(--gold); }
+  .stage-line { flex:1; height:1px; background:var(--gold-light); margin-bottom:16px; }
+  .stage-label { font-size:9px; letter-spacing:0.2em; color:var(--text-light); }
 
   /* Flower canvas */
   .flower-canvas {
-    position: relative;
-    width: 320px;
-    height: 320px;
-    margin: 0 auto 12px;
+    position:relative;
+    width:300px;
+    height:300px;
+    margin:0 auto 12px;
   }
-
-  .flower-svg {
-    width: 100%;
-    height: 100%;
-    overflow: visible;
-  }
+  .flower-svg { width:100%; height:100%; overflow:visible; }
 
   /* Stage message */
-  .stage-message {
-    text-align: center;
-    padding: 0 32px 24px;
-  }
-
-  .stage-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 22px;
-    font-weight: 300;
-    font-style: italic;
-    color: var(--text-dark);
-    margin-bottom: 6px;
-    min-height: 32px;
-    transition: all 0.5s ease;
-  }
-
-  .stage-desc {
-    font-size: 11px;
-    color: var(--text-light);
-    letter-spacing: 0.1em;
-    line-height: 1.8;
-    min-height: 36px;
-  }
-
-  /* Emotion badge */
+  .stage-message { text-align:center; padding:0 32px 20px; }
   .emotion-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 4px 14px;
-    border-radius: 20px;
-    border: 1px solid currentColor;
-    font-size: 10px;
-    letter-spacing: 0.15em;
-    margin-bottom: 20px;
-    opacity: 0;
-    transform: translateY(8px);
-    transition: all 0.5s ease;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    padding:4px 14px;
+    border-radius:20px;
+    border:1px solid currentColor;
+    font-size:10px;
+    letter-spacing:0.15em;
+    margin-bottom:16px;
+    opacity:0;
+    transform:translateY(8px);
+    transition:all 0.5s ease;
   }
-
-  .emotion-badge.visible {
-    opacity: 1;
-    transform: translateY(0);
+  .emotion-badge.visible { opacity:1; transform:translateY(0); }
+  .stage-title {
+    font-family:'Cormorant Garamond',serif;
+    font-size:22px;
+    font-weight:300;
+    font-style:italic;
+    color:var(--text-dark);
+    margin-bottom:6px;
+    min-height:32px;
+    transition:all 0.5s ease;
   }
-
-  .emotion-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: currentColor;
+  .stage-desc {
+    font-size:11px;
+    color:var(--text-light);
+    letter-spacing:0.1em;
+    line-height:1.8;
+    min-height:36px;
   }
-
-  /* Input area */
-  .input-area {
-    padding: 0 24px;
+  .flower-name-badge {
+    display:inline-block;
+    font-size:11px;
+    letter-spacing:0.2em;
+    color:var(--gold);
+    border-bottom:1px solid var(--gold-light);
+    padding-bottom:2px;
+    margin-top:8px;
+    opacity:0;
+    transition:opacity 0.8s ease 0.5s;
   }
+  .flower-name-badge.visible { opacity:1; }
 
+  /* Input */
+  .input-area { padding:0 24px; }
   .upload-zone {
-    border: 1.5px dashed var(--gold-light);
-    border-radius: 16px;
-    padding: 20px;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    background: rgba(255,252,247,0.8);
-    margin-bottom: 14px;
-    position: relative;
-    overflow: hidden;
+    border:1.5px dashed var(--gold-light);
+    border-radius:16px;
+    padding:20px;
+    text-align:center;
+    cursor:pointer;
+    transition:all 0.3s ease;
+    background:rgba(255,252,247,0.8);
+    margin-bottom:14px;
+    position:relative;
+    overflow:hidden;
   }
-
-  .upload-zone:hover {
-    border-color: var(--gold);
-    background: rgba(201,169,110,0.05);
-  }
-
+  .upload-zone:hover { border-color:var(--gold); background:rgba(201,169,110,0.05); }
   .upload-zone input[type="file"] {
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    cursor: pointer;
-    width: 100%;
-    height: 100%;
+    position:absolute; inset:0; opacity:0; cursor:pointer; width:100%; height:100%;
   }
-
   .upload-preview {
-    display: none;
-    width: 80px;
-    height: 80px;
-    border-radius: 10px;
-    object-fit: cover;
-    margin: 0 auto 8px;
+    display:none; width:80px; height:80px;
+    border-radius:10px; object-fit:cover; margin:0 auto 8px;
   }
-
-  .upload-preview.visible { display: block; }
-
-  .upload-icon {
-    font-size: 24px;
-    margin-bottom: 6px;
-    display: block;
-  }
-
-  .upload-text {
-    font-size: 11px;
-    color: var(--text-light);
-    letter-spacing: 0.1em;
-  }
-
-  .text-input-wrap {
-    position: relative;
-    margin-bottom: 16px;
-  }
-
+  .upload-preview.visible { display:block; }
+  .upload-icon { font-size:24px; margin-bottom:6px; display:block; }
+  .upload-text { font-size:11px; color:var(--text-light); letter-spacing:0.1em; }
+  .text-input-wrap { position:relative; margin-bottom:16px; }
   .diary-input {
-    width: 100%;
-    background: var(--warm-white);
-    border: 1.5px solid var(--gold-light);
-    border-radius: 16px;
-    padding: 16px 20px;
-    font-family: 'Noto Serif JP', serif;
-    font-size: 13px;
-    color: var(--text-dark);
-    resize: none;
-    height: 90px;
-    outline: none;
-    transition: border-color 0.3s;
-    line-height: 1.8;
+    width:100%;
+    background:var(--warm-white);
+    border:1.5px solid var(--gold-light);
+    border-radius:16px;
+    padding:16px 20px;
+    font-family:'Noto Serif JP',serif;
+    font-size:13px;
+    color:var(--text-dark);
+    resize:none;
+    height:90px;
+    outline:none;
+    transition:border-color 0.3s;
+    line-height:1.8;
   }
-
-  .diary-input::placeholder {
-    color: var(--text-light);
-    font-size: 12px;
-  }
-
-  .diary-input:focus {
-    border-color: var(--gold);
-  }
-
-  .char-count {
-    position: absolute;
-    bottom: 10px;
-    right: 14px;
-    font-size: 10px;
-    color: var(--text-light);
-  }
-
+  .diary-input::placeholder { color:var(--text-light); font-size:12px; }
+  .diary-input:focus { border-color:var(--gold); }
+  .char-count { position:absolute; bottom:10px; right:14px; font-size:10px; color:var(--text-light); }
   .submit-btn {
-    width: 100%;
-    background: linear-gradient(135deg, var(--gold) 0%, #b8904a 100%);
-    color: white;
-    border: none;
-    border-radius: 50px;
-    padding: 16px;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 16px;
-    font-weight: 400;
-    letter-spacing: 0.2em;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 20px rgba(201,169,110,0.35);
+    width:100%;
+    background:linear-gradient(135deg,var(--gold) 0%,#b8904a 100%);
+    color:white;
+    border:none;
+    border-radius:50px;
+    padding:16px;
+    font-family:'Cormorant Garamond',serif;
+    font-size:16px;
+    font-weight:400;
+    letter-spacing:0.2em;
+    cursor:pointer;
+    transition:all 0.3s ease;
+    box-shadow:0 4px 20px rgba(201,169,110,0.35);
   }
+  .submit-btn:hover { transform:translateY(-2px); box-shadow:0 8px 28px rgba(201,169,110,0.45); }
+  .submit-btn:active { transform:translateY(0); }
+  .submit-btn:disabled { opacity:0.5; cursor:not-allowed; transform:none; }
 
-  .submit-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 28px rgba(201,169,110,0.45);
-  }
-
-  .submit-btn:active {
-    transform: translateY(0);
-  }
-
-  .submit-btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-    transform: none;
-  }
-
-  /* Log history */
-  .log-history {
-    padding: 28px 24px 0;
-  }
-
-  .log-title {
-    font-size: 10px;
-    letter-spacing: 0.3em;
-    color: var(--text-light);
-    text-transform: uppercase;
-    margin-bottom: 14px;
-  }
-
+  /* Log */
+  .log-history { padding:28px 24px 0; }
+  .log-title { font-size:10px; letter-spacing:0.3em; color:var(--text-light); text-transform:uppercase; margin-bottom:14px; }
   .log-item {
-    display: flex;
-    gap: 12px;
-    padding: 12px 0;
-    border-bottom: 1px solid rgba(201,169,110,0.15);
-    animation: fadeSlideIn 0.5s ease;
+    display:flex; gap:12px; padding:12px 0;
+    border-bottom:1px solid rgba(201,169,110,0.15);
+    animation:fadeSlideIn 0.5s ease;
   }
-
   @keyframes fadeSlideIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+    from { opacity:0; transform:translateY(10px); }
+    to { opacity:1; transform:translateY(0); }
   }
-
   .log-thumb {
-    width: 40px;
-    height: 40px;
-    border-radius: 8px;
-    object-fit: cover;
-    flex-shrink: 0;
-    background: var(--gold-light);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
+    width:40px; height:40px; border-radius:8px;
+    object-fit:cover; flex-shrink:0;
+    background:var(--gold-light);
+    display:flex; align-items:center; justify-content:center; font-size:18px;
   }
+  .log-content { flex:1; }
+  .log-emotion { font-size:9px; letter-spacing:0.2em; color:var(--text-light); margin-bottom:3px; }
+  .log-text { font-size:12px; color:var(--text-mid); line-height:1.6; }
 
-  .log-content { flex: 1; }
-
-  .log-emotion {
-    font-size: 9px;
-    letter-spacing: 0.2em;
-    color: var(--text-light);
-    margin-bottom: 3px;
-  }
-
-  .log-text {
-    font-size: 12px;
-    color: var(--text-mid);
-    line-height: 1.6;
-  }
-
-  /* Completion screen */
-  .completion {
-    display: none;
-    text-align: center;
-    padding: 20px 32px 40px;
-    animation: fadeIn 1s ease;
-  }
-
-  .completion.visible { display: block; }
-
-  @keyframes fadeIn {
-    from { opacity: 0; } to { opacity: 1; }
-  }
-
+  /* Completion */
+  .completion { display:none; text-align:center; padding:20px 32px 40px; animation:fadeIn 1s ease; }
+  .completion.visible { display:block; }
+  @keyframes fadeIn { from{opacity:0;} to{opacity:1;} }
   .completion-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 32px;
-    font-weight: 300;
-    font-style: italic;
-    color: var(--text-dark);
-    margin-bottom: 12px;
-    line-height: 1.3;
+    font-family:'Cormorant Garamond',serif;
+    font-size:32px; font-weight:300; font-style:italic;
+    color:var(--text-dark); margin-bottom:12px; line-height:1.3;
   }
-
   .completion-sub {
-    font-size: 11px;
-    color: var(--text-light);
-    letter-spacing: 0.2em;
-    line-height: 2;
-    margin-bottom: 28px;
+    font-size:11px; color:var(--text-light);
+    letter-spacing:0.2em; line-height:2; margin-bottom:28px;
   }
-
   .reset-btn {
-    background: transparent;
-    border: 1.5px solid var(--gold);
-    color: var(--gold);
-    border-radius: 50px;
-    padding: 12px 32px;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 14px;
-    letter-spacing: 0.2em;
-    cursor: pointer;
-    transition: all 0.3s ease;
+    background:transparent; border:1.5px solid var(--gold);
+    color:var(--gold); border-radius:50px; padding:12px 32px;
+    font-family:'Cormorant Garamond',serif; font-size:14px;
+    letter-spacing:0.2em; cursor:pointer; transition:all 0.3s ease;
   }
+  .reset-btn:hover { background:var(--gold); color:white; }
 
-  .reset-btn:hover {
-    background: var(--gold);
-    color: white;
-  }
-
-  /* Sparkles */
-  .sparkle {
-    position: absolute;
-    pointer-events: none;
-    animation: sparklePop 1.2s ease forwards;
-  }
-
-  @keyframes sparklePop {
-    0% { opacity: 0; transform: scale(0) rotate(0deg); }
-    40% { opacity: 1; transform: scale(1.2) rotate(20deg); }
-    100% { opacity: 0; transform: scale(0.5) rotate(40deg) translateY(-30px); }
-  }
-
-  /* Petal burst on bloom */
+  /* Petal burst */
   .petal-burst {
-    position: fixed;
-    pointer-events: none;
-    z-index: 100;
-    animation: petalFall linear forwards;
+    position:fixed; pointer-events:none; z-index:100;
+    animation:petalFall linear forwards;
+  }
+  @keyframes petalFall {
+    0% { opacity:1; transform:translateY(0) rotate(0deg); }
+    100% { opacity:0; transform:translateY(100vh) rotate(720deg); }
   }
 
-  @keyframes petalFall {
-    0% { opacity: 1; transform: translateY(0) rotate(0deg); }
-    100% { opacity: 0; transform: translateY(100vh) rotate(720deg); }
-  }
+  /* Flower transition */
+  .flower-group { transition: opacity 0.8s ease; }
 </style>
 </head>
 <body>
 <div class="app">
 
-  <!-- Header -->
   <div class="header">
-    <svg class="logo-mark" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg class="logo-mark" viewBox="0 0 48 48" fill="none">
       <circle cx="24" cy="24" r="4" fill="#c9a96e"/>
       <ellipse cx="24" cy="14" rx="5" ry="8" fill="#e8c88a" opacity="0.7"/>
       <ellipse cx="24" cy="34" rx="5" ry="8" fill="#e8c88a" opacity="0.7"/>
@@ -484,131 +293,100 @@
     <div class="logo-sub">あなたの1年間が、花になる</div>
   </div>
 
-  <!-- Stage bar -->
   <div class="stage-bar">
-    <div class="stage-item active" id="stage-0">
-      <div class="stage-dot"></div>
-      <div class="stage-label">種</div>
-    </div>
+    <div class="stage-item active" id="stage-0"><div class="stage-dot"></div><div class="stage-label">種</div></div>
     <div class="stage-line"></div>
-    <div class="stage-item" id="stage-1">
-      <div class="stage-dot"></div>
-      <div class="stage-label">発芽</div>
-    </div>
+    <div class="stage-item" id="stage-1"><div class="stage-dot"></div><div class="stage-label">発芽</div></div>
     <div class="stage-line"></div>
-    <div class="stage-item" id="stage-2">
-      <div class="stage-dot"></div>
-      <div class="stage-label">成長</div>
-    </div>
+    <div class="stage-item" id="stage-2"><div class="stage-dot"></div><div class="stage-label">成長</div></div>
     <div class="stage-line"></div>
-    <div class="stage-item" id="stage-3">
-      <div class="stage-dot"></div>
-      <div class="stage-label">開花</div>
-    </div>
+    <div class="stage-item" id="stage-3"><div class="stage-dot"></div><div class="stage-label">開花</div></div>
   </div>
 
   <!-- Flower canvas -->
   <div class="flower-canvas" id="flowerCanvas">
-    <svg class="flower-svg" id="flowerSvg" viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg">
+    <svg class="flower-svg" id="flowerSvg" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <radialGradient id="soilGrad" cx="50%" cy="60%" r="50%">
           <stop offset="0%" stop-color="#d4a96a" stop-opacity="0.3"/>
           <stop offset="100%" stop-color="#b8864a" stop-opacity="0.1"/>
         </radialGradient>
         <radialGradient id="glowGrad" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stop-color="#fff8e8" stop-opacity="0.8"/>
+          <stop offset="0%" stop-color="#fff8e8" stop-opacity="0.9"/>
           <stop offset="100%" stop-color="#fff8e8" stop-opacity="0"/>
         </radialGradient>
-        <filter id="softBlur">
-          <feGaussianBlur stdDeviation="2"/>
-        </filter>
-        <filter id="glow">
-          <feGaussianBlur stdDeviation="4" result="blur"/>
+        <filter id="softGlow">
+          <feGaussianBlur stdDeviation="3" result="blur"/>
           <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+        <filter id="petalShadow">
+          <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="rgba(0,0,0,0.08)"/>
         </filter>
       </defs>
 
       <!-- Ground -->
-      <ellipse id="ground" cx="160" cy="275" rx="70" ry="12" fill="url(#soilGrad)"/>
+      <ellipse cx="150" cy="268" rx="65" ry="11" fill="url(#soilGrad)"/>
 
-      <!-- Stage 0: Seed -->
-      <g id="seedGroup">
-        <ellipse cx="160" cy="270" rx="10" ry="7" fill="#b8864a" opacity="0.8"/>
-        <ellipse cx="160" cy="270" rx="6" ry="4" fill="#d4a96a" opacity="0.6"/>
-        <ellipse cx="157" cy="268" rx="2" ry="3" fill="#e8c88a" opacity="0.5" transform="rotate(-20 157 268)"/>
+      <!-- STAGE 0: Seed -->
+      <g id="seedGroup" class="flower-group">
+        <ellipse cx="150" cy="264" rx="11" ry="8" fill="#b8864a" opacity="0.85"/>
+        <ellipse cx="150" cy="264" rx="7" ry="5" fill="#d4a96a" opacity="0.65"/>
+        <ellipse cx="147" cy="262" rx="2.5" ry="3.5" fill="#e8c88a" opacity="0.55" transform="rotate(-20 147 262)"/>
+        <ellipse cx="153" cy="265" rx="2" ry="3" fill="#c8a050" opacity="0.4" transform="rotate(15 153 265)"/>
       </g>
 
-      <!-- Stage 1: Sprout (hidden initially) -->
-      <g id="sproutGroup" opacity="0" transform="translate(0,20)">
-        <!-- Stem -->
-        <path d="M160 270 Q158 240 160 210" stroke="#6b8f5e" stroke-width="3" fill="none" stroke-linecap="round"/>
-        <!-- Two small leaves -->
-        <ellipse cx="152" cy="235" rx="10" ry="5" fill="#7aaa6a" opacity="0.85" transform="rotate(-30 152 235)"/>
-        <ellipse cx="168" cy="228" rx="10" ry="5" fill="#8abc7a" opacity="0.85" transform="rotate(30 168 228)"/>
-        <!-- Tiny bud -->
-        <ellipse cx="160" cy="210" rx="5" ry="7" fill="#f0a0a0" opacity="0.7"/>
+      <!-- STAGE 1: Sprout -->
+      <g id="sproutGroup" class="flower-group" opacity="0">
+        <path d="M150 266 Q148 245 150 218" stroke="#6b8f5e" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path d="M150 245 Q138 235 132 228" stroke="#6b8f5e" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <ellipse cx="128" cy="226" rx="12" ry="6" fill="#7aaa6a" opacity="0.85" transform="rotate(-25 128 226)"/>
+        <path d="M150 238 Q162 228 168 222" stroke="#6b8f5e" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <ellipse cx="171" cy="220" rx="11" ry="5.5" fill="#8abc7a" opacity="0.85" transform="rotate(30 171 220)"/>
+        <ellipse cx="150" cy="215" rx="6" ry="8" fill="#f0b0b0" opacity="0.75"/>
+        <ellipse cx="146" cy="212" rx="4" ry="6" fill="#fcc8c0" opacity="0.55" transform="rotate(-12 146 212)"/>
+        <ellipse cx="154" cy="212" rx="4" ry="6" fill="#fcc8c0" opacity="0.55" transform="rotate(12 154 212)"/>
       </g>
 
-      <!-- Stage 2: Growing (hidden initially) -->
-      <g id="growingGroup" opacity="0" transform="translate(0,10)">
-        <!-- Taller stem -->
-        <path d="M160 272 Q155 240 158 195 Q160 170 160 155" stroke="#5a7a50" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-        <!-- Leaves -->
-        <ellipse cx="148" cy="230" rx="18" ry="7" fill="#6aaa5a" opacity="0.8" transform="rotate(-35 148 230)"/>
-        <ellipse cx="172" cy="210" rx="16" ry="6" fill="#7abc6a" opacity="0.8" transform="rotate(25 172 210)"/>
-        <ellipse cx="145" cy="185" rx="14" ry="5" fill="#5a9a4a" opacity="0.75" transform="rotate(-40 145 185)"/>
-        <!-- Bud getting larger -->
-        <ellipse cx="160" cy="152" rx="10" ry="13" fill="#f0b0b0" opacity="0.8"/>
-        <ellipse cx="155" cy="148" rx="6" ry="10" fill="#f8c8c0" opacity="0.6" transform="rotate(-10 155 148)"/>
-        <ellipse cx="165" cy="148" rx="6" ry="10" fill="#f8c8c0" opacity="0.6" transform="rotate(10 165 148)"/>
+      <!-- STAGE 2: Growing -->
+      <g id="growingGroup" class="flower-group" opacity="0">
+        <path d="M150 267 Q145 240 147 205 Q149 178 150 162" stroke="#5a7a50" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+        <path d="M148 232 Q135 220 128 213" stroke="#5a7a50" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <ellipse cx="123" cy="210" rx="16" ry="7" fill="#6aaa5a" opacity="0.82" transform="rotate(-32 123 210)"/>
+        <path d="M149 215 Q162 203 170 197" stroke="#5a7a50" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <ellipse cx="174" cy="194" rx="15" ry="6.5" fill="#7abc6a" opacity="0.82" transform="rotate(28 174 194)"/>
+        <path d="M149 193 Q138 182 133 175" stroke="#5a7a50" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+        <ellipse cx="129" cy="172" rx="13" ry="5.5" fill="#5a9a4a" opacity="0.78" transform="rotate(-38 129 172)"/>
+        <!-- Large bud -->
+        <ellipse cx="150" cy="157" rx="13" ry="17" fill="#f0b0b0" opacity="0.82" filter="url(#petalShadow)"/>
+        <ellipse cx="143" cy="152" rx="8" ry="13" fill="#fcc8c0" opacity="0.65" transform="rotate(-14 143 152)"/>
+        <ellipse cx="157" cy="152" rx="8" ry="13" fill="#fcc8c0" opacity="0.65" transform="rotate(14 157 152)"/>
+        <ellipse cx="150" cy="148" rx="6" ry="10" fill="#ffd8d0" opacity="0.5"/>
       </g>
 
-      <!-- Stage 3: Bloom (hidden initially) -->
-      <g id="bloomGroup" opacity="0">
-        <!-- Main stem -->
-        <path d="M160 272 Q154 235 157 195 Q159 165 160 140" stroke="#4a6a40" stroke-width="4" fill="none" stroke-linecap="round"/>
-        <!-- Full leaves -->
-        <ellipse cx="143" cy="225" rx="22" ry="8" fill="#5a9a4a" opacity="0.85" transform="rotate(-38 143 225)"/>
-        <ellipse cx="177" cy="205" rx="20" ry="7" fill="#6aaa5a" opacity="0.85" transform="rotate(30 177 205)"/>
-        <ellipse cx="140" cy="178" rx="18" ry="6" fill="#4a8a3a" opacity="0.8" transform="rotate(-42 140 178)"/>
-
-        <!-- Glow behind flower -->
-        <circle cx="160" cy="115" r="55" fill="url(#glowGrad)" filter="url(#softBlur)"/>
-
-        <!-- Petals - will be colored dynamically -->
-        <!-- Back petals -->
-        <ellipse id="p-b1" cx="160" cy="75" rx="18" ry="30" fill="#f0a0a0" opacity="0.7"/>
-        <ellipse id="p-b2" cx="160" cy="75" rx="18" ry="30" fill="#f0a0a0" opacity="0.7" transform="rotate(45 160 115)"/>
-        <ellipse id="p-b3" cx="160" cy="75" rx="18" ry="30" fill="#f0a0a0" opacity="0.7" transform="rotate(90 160 115)"/>
-        <ellipse id="p-b4" cx="160" cy="75" rx="18" ry="30" fill="#f0a0a0" opacity="0.7" transform="rotate(135 160 115)"/>
-        <!-- Front petals -->
-        <ellipse id="p-f1" cx="160" cy="78" rx="16" ry="28" fill="#f8b8b8" opacity="0.85" transform="rotate(22.5 160 115)"/>
-        <ellipse id="p-f2" cx="160" cy="78" rx="16" ry="28" fill="#f8b8b8" opacity="0.85" transform="rotate(67.5 160 115)"/>
-        <ellipse id="p-f3" cx="160" cy="78" rx="16" ry="28" fill="#f8b8b8" opacity="0.85" transform="rotate(112.5 160 115)"/>
-        <ellipse id="p-f4" cx="160" cy="78" rx="16" ry="28" fill="#f8b8b8" opacity="0.85" transform="rotate(157.5 160 115)"/>
-        <!-- Center -->
-        <circle cx="160" cy="115" r="18" fill="#f5c842" filter="url(#glow)"/>
-        <circle cx="160" cy="115" r="12" fill="#f0d060"/>
-        <circle cx="160" cy="115" r="7" fill="#e8c040"/>
-        <!-- Stamens -->
-        <circle cx="155" cy="110" r="2" fill="#c8a020" opacity="0.7"/>
-        <circle cx="165" cy="110" r="2" fill="#c8a020" opacity="0.7"/>
-        <circle cx="160" cy="107" r="2" fill="#c8a020" opacity="0.7"/>
-        <circle cx="155" cy="120" r="1.5" fill="#c8a020" opacity="0.6"/>
-        <circle cx="165" cy="120" r="1.5" fill="#c8a020" opacity="0.6"/>
+      <!-- STAGE 3: Bloom — flower drawn by JS -->
+      <g id="bloomGroup" class="flower-group" opacity="0">
+        <!-- Stem + leaves -->
+        <path d="M150 267 Q144 238 146 205 Q148 175 150 155" stroke="#4a6a40" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <path d="M147 228 Q133 216 125 208" stroke="#4a6a40" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+        <ellipse cx="120" cy="205" rx="19" ry="8" fill="#5a9a4a" opacity="0.87" transform="rotate(-34 120 205)"/>
+        <path d="M148 210 Q163 197 172 190" stroke="#4a6a40" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+        <ellipse cx="176" cy="187" rx="18" ry="7.5" fill="#6aaa5a" opacity="0.87" transform="rotate(30 176 187)"/>
+        <path d="M148 190 Q135 177 129 170" stroke="#4a6a40" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+        <ellipse cx="125" cy="167" rx="15" ry="6.5" fill="#4a8a3a" opacity="0.82" transform="rotate(-40 125 167)"/>
+        <!-- Flower petals drawn by JS into this group -->
+        <g id="petalGroup"></g>
       </g>
 
     </svg>
   </div>
 
-  <!-- Stage message -->
   <div class="stage-message">
     <div id="emotionBadge" class="emotion-badge"></div>
     <div id="stageTitle" class="stage-title">あなたの種、待っています</div>
     <div id="stageDesc" class="stage-desc">今日の写真と、一言を届けてください。<br>思いが、花の栄養になります。</div>
+    <div id="flowerNameBadge" class="flower-name-badge"></div>
   </div>
 
-  <!-- Input area -->
   <div class="input-area" id="inputArea">
     <div class="upload-zone" id="uploadZone">
       <input type="file" accept="image/*" id="photoInput" onchange="handlePhoto(event)">
@@ -616,30 +394,23 @@
       <span class="upload-icon" id="uploadIcon">📷</span>
       <div class="upload-text" id="uploadText">今日の写真を追加</div>
     </div>
-
     <div class="text-input-wrap">
-      <textarea class="diary-input" id="diaryInput" placeholder="今日の気持ちや出来事を…&#10;例：今日は二人で初めての料理をした。うまくできた！" maxlength="100"></textarea>
+      <textarea class="diary-input" id="diaryInput"
+        placeholder="今日の気持ちや出来事を…&#10;例：二人で初めての料理をした。うまくできた！" maxlength="100"></textarea>
       <span class="char-count" id="charCount">0/100</span>
     </div>
-
-    <button class="submit-btn" id="submitBtn" onclick="handleSubmit()">
-      水をあげる ✦
-    </button>
+    <button class="submit-btn" id="submitBtn" onclick="handleSubmit()">水をあげる ✦</button>
   </div>
 
-  <!-- Log history -->
   <div class="log-history" id="logHistory" style="display:none;">
     <div class="log-title">✦ これまでの記録</div>
     <div id="logList"></div>
   </div>
 
-  <!-- Completion -->
   <div class="completion" id="completionArea">
     <div class="completion-title">満開になりました</div>
-    <div class="completion-sub">
-      あなたたちの思いが<br>
-      世界にひとつだけの花になりました。<br><br>
-      この花は、あなたの1年間です。
+    <div class="completion-sub" id="completionSub">
+      あなたたちの思いが<br>世界にひとつだけの花になりました。<br><br>この花は、あなたの1年間です。
     </div>
     <button class="reset-btn" onclick="resetDemo()">もう一度体験する</button>
   </div>
@@ -647,275 +418,546 @@
 </div>
 
 <script>
-  let currentStage = 0;
-  let logs = [];
-  let currentPhotoData = null;
-
-  const stageData = [
-    {
-      title: 'あなたの種、待っています',
-      desc: '今日の写真と、一言を届けてください。\n思いが、花の栄養になります。',
-    },
-    {
-      title: '芽が出てきました',
-      desc: '小さな緑が顔を出しました。\nあなたの思いが、形になり始めています。',
-    },
-    {
-      title: '花が育っています',
-      desc: '蕾が膨らんでいます。\nあなたの日常が、色に変わっています。',
-    },
-    {
-      title: '満開です',
-      desc: '',
+// ============================================================
+// FLOWER DEFINITIONS
+// ============================================================
+const FLOWERS = {
+  sunflower: {
+    name: 'ひまわり — Sunflower',
+    emoji: '🌻',
+    draw(svg, cx, cy) {
+      const r = 52;
+      const petalCount = 16;
+      const petalColor1 = '#f5c030';
+      const petalColor2 = '#f0a820';
+      // Back petals
+      for (let i = 0; i < petalCount; i++) {
+        const angle = (i / petalCount) * 360;
+        const el = makeSVG('ellipse');
+        el.setAttribute('cx', cx);
+        el.setAttribute('cy', cy - r);
+        el.setAttribute('rx', '11');
+        el.setAttribute('ry', '22');
+        el.setAttribute('fill', i % 2 === 0 ? petalColor1 : petalColor2);
+        el.setAttribute('opacity', '0.88');
+        el.setAttribute('transform', `rotate(${angle} ${cx} ${cy})`);
+        el.setAttribute('filter', 'url(#petalShadow)');
+        svg.appendChild(el);
+      }
+      // Center brown
+      const c1 = makeSVG('circle');
+      c1.setAttribute('cx', cx); c1.setAttribute('cy', cy); c1.setAttribute('r', '26');
+      c1.setAttribute('fill', '#5a3010'); svg.appendChild(c1);
+      const c2 = makeSVG('circle');
+      c2.setAttribute('cx', cx); c2.setAttribute('cy', cy); c2.setAttribute('r', '20');
+      c2.setAttribute('fill', '#7a4520'); svg.appendChild(c2);
+      // Seed dots
+      for (let i = 0; i < 24; i++) {
+        const a = (i/24)*Math.PI*2; const dr = 8 + (i%3)*4;
+        const dot = makeSVG('circle');
+        dot.setAttribute('cx', cx + Math.cos(a)*dr);
+        dot.setAttribute('cy', cy + Math.sin(a)*dr);
+        dot.setAttribute('r', '2'); dot.setAttribute('fill', '#3a2010'); dot.setAttribute('opacity','0.6');
+        svg.appendChild(dot);
+      }
+      const c3 = makeSVG('circle');
+      c3.setAttribute('cx', cx); c3.setAttribute('cy', cy); c3.setAttribute('r', '6');
+      c3.setAttribute('fill', '#9a5530'); svg.appendChild(c3);
     }
-  ];
+  },
 
-  const emotionMap = [
-    { keywords: ['嬉しい','楽しい','幸せ','最高','好き','笑','ありがとう','うまく','できた','一緒','初めて','デート','笑顔','素敵','最幸','いい','好調','ハッピー','happy','good','love'], emotion: 'bright', label: '✦ BRIGHT — 喜び', color: '#e8604a', petals: ['#ff9070','#ffb090','#ffd0b0','#ff8060','#ffb880'] },
-    { keywords: ['穏やか','ゆっくり','のんびり','平和','静か','ほっ','安心','ぬくもり','自然','散歩','空','朝','夕','風','普通','今日','感謝'], emotion: 'calm', label: '✦ CALM — 穏やか', color: '#6a9a7a', petals: ['#90c8a0','#b0d8b8','#d0e8d0','#a8c8a8','#c0e0b0'] },
-    { keywords: ['悲しい','つらい','しんどい','疲れ','不安','心配','寂しい','落ち込','辛い','難しい','涙','泣','病気','体調'], emotion: 'melancholy', label: '✦ MELANCHOLY — 静思', color: '#6a88bb', petals: ['#8090c0','#a0b0d8','#c0c8e8','#9090b8','#b0b8d0'] },
-    { keywords: ['情熱','頑張','やる気','燃え','挑戦','夢','目標','絶対','負けない','熱い','興奮','ドキドキ','ワクワク'], emotion: 'passionate', label: '✦ PASSIONATE — 情熱', color: '#c84858', petals: ['#e05060','#f07080','#ff9090','#d04050','#f06070'] },
-    { keywords: ['ロマン','愛','恋','出会い','記念','大切','宝','大事','忘れない','想い','二人','夫婦','結婚','プロポーズ'], emotion: 'romantic', label: '✦ ROMANTIC — 愛', color: '#c87090', petals: ['#e890a8','#f8a8b8','#ffc0c8','#d87890','#f0a0b0'] },
-  ];
-
-  function detectEmotion(text) {
-    let best = null;
-    let bestCount = 0;
-    for (const e of emotionMap) {
-      let count = 0;
-      for (const kw of e.keywords) {
-        if (text.includes(kw)) count++;
-      }
-      if (count > bestCount) { bestCount = count; best = e; }
+  rose: {
+    name: 'バラ — Rose',
+    emoji: '🌹',
+    draw(svg, cx, cy) {
+      // Outer petals
+      const outerColors = ['#d44060','#e05070','#cc3858','#d84868'];
+      const outerAngles = [0,45,90,135,180,225,270,315];
+      outerAngles.forEach((angle, i) => {
+        const el = makeSVG('ellipse');
+        el.setAttribute('cx', cx);
+        el.setAttribute('cy', cy - 44);
+        el.setAttribute('rx', '15');
+        el.setAttribute('ry', '26');
+        el.setAttribute('fill', outerColors[i % outerColors.length]);
+        el.setAttribute('opacity', '0.8');
+        el.setAttribute('transform', `rotate(${angle} ${cx} ${cy})`);
+        el.setAttribute('filter', 'url(#petalShadow)');
+        svg.appendChild(el);
+      });
+      // Mid petals
+      const midColors = ['#e86080','#f07090','#e05878'];
+      [22.5,67.5,112.5,157.5,202.5,247.5].forEach((angle, i) => {
+        const el = makeSVG('ellipse');
+        el.setAttribute('cx', cx);
+        el.setAttribute('cy', cy - 34);
+        el.setAttribute('rx', '13');
+        el.setAttribute('ry', '22');
+        el.setAttribute('fill', midColors[i % midColors.length]);
+        el.setAttribute('opacity', '0.88');
+        el.setAttribute('transform', `rotate(${angle} ${cx} ${cy})`);
+        svg.appendChild(el);
+      });
+      // Inner petals
+      [0,60,120,180,240,300].forEach((angle, i) => {
+        const el = makeSVG('ellipse');
+        el.setAttribute('cx', cx);
+        el.setAttribute('cy', cy - 22);
+        el.setAttribute('rx', '10');
+        el.setAttribute('ry', '16');
+        el.setAttribute('fill', '#f890a8');
+        el.setAttribute('opacity', '0.9');
+        el.setAttribute('transform', `rotate(${angle} ${cx} ${cy})`);
+        svg.appendChild(el);
+      });
+      // Center spiral
+      const spiral = makeSVG('circle');
+      spiral.setAttribute('cx', cx); spiral.setAttribute('cy', cy); spiral.setAttribute('r', '13');
+      spiral.setAttribute('fill', '#fbb0c0'); svg.appendChild(spiral);
+      const spiralIn = makeSVG('circle');
+      spiralIn.setAttribute('cx', cx); spiralIn.setAttribute('cy', cy); spiralIn.setAttribute('r', '7');
+      spiralIn.setAttribute('fill', '#fcc8d0'); svg.appendChild(spiralIn);
+      const spiralCore = makeSVG('circle');
+      spiralCore.setAttribute('cx', cx); spiralCore.setAttribute('cy', cy); spiralCore.setAttribute('r', '4');
+      spiralCore.setAttribute('fill', '#fddce0'); svg.appendChild(spiralCore);
     }
-    return best || emotionMap[0];
-  }
+  },
 
-  function updateFlowerColor(emotion) {
-    const petals = ['p-b1','p-b2','p-b3','p-b4','p-f1','p-f2','p-f3','p-f4'];
-    petals.forEach((id, i) => {
-      const el = document.getElementById(id);
-      if (el) {
-        el.style.transition = 'fill 1.5s ease';
-        el.setAttribute('fill', emotion.petals[i % emotion.petals.length]);
+  daisy: {
+    name: 'デイジー — Daisy',
+    emoji: '🌼',
+    draw(svg, cx, cy) {
+      const r = 48;
+      const petalCount = 20;
+      // Back ring
+      for (let i = 0; i < petalCount; i++) {
+        const angle = (i / petalCount) * 360;
+        const el = makeSVG('ellipse');
+        el.setAttribute('cx', cx);
+        el.setAttribute('cy', cy - r);
+        el.setAttribute('rx', '9');
+        el.setAttribute('ry', '24');
+        el.setAttribute('fill', i % 2 === 0 ? '#ffffff' : '#f0f4f8');
+        el.setAttribute('opacity', '0.92');
+        el.setAttribute('transform', `rotate(${angle} ${cx} ${cy})`);
+        el.setAttribute('filter', 'url(#petalShadow)');
+        svg.appendChild(el);
       }
-    });
-  }
+      // Front ring offset
+      for (let i = 0; i < petalCount; i++) {
+        const angle = (i / petalCount) * 360 + (360/petalCount/2);
+        const el = makeSVG('ellipse');
+        el.setAttribute('cx', cx);
+        el.setAttribute('cy', cy - r + 4);
+        el.setAttribute('rx', '8');
+        el.setAttribute('ry', '22');
+        el.setAttribute('fill', '#f8faff');
+        el.setAttribute('opacity', '0.85');
+        el.setAttribute('transform', `rotate(${angle} ${cx} ${cy})`);
+        svg.appendChild(el);
+      }
+      // Center
+      const cg = makeSVG('circle');
+      cg.setAttribute('cx', cx); cg.setAttribute('cy', cy); cg.setAttribute('r', '20');
+      cg.setAttribute('fill', '#f5d030'); cg.setAttribute('filter', 'url(#softGlow)'); svg.appendChild(cg);
+      const cm = makeSVG('circle');
+      cm.setAttribute('cx', cx); cm.setAttribute('cy', cy); cm.setAttribute('r', '14');
+      cm.setAttribute('fill', '#f0c020'); svg.appendChild(cm);
+      // Texture dots
+      for (let i = 0; i < 18; i++) {
+        const a = (i/18)*Math.PI*2; const dr = 6 + (i%2)*4;
+        const dot = makeSVG('circle');
+        dot.setAttribute('cx', cx + Math.cos(a)*dr);
+        dot.setAttribute('cy', cy + Math.sin(a)*dr);
+        dot.setAttribute('r', '1.5'); dot.setAttribute('fill', '#c8a010'); dot.setAttribute('opacity','0.5');
+        svg.appendChild(dot);
+      }
+    }
+  },
 
-  function updateStageIndicator(stage) {
-    for (let i = 0; i <= 3; i++) {
-      const el = document.getElementById(`stage-${i}`);
-      el.classList.remove('active','done');
-      if (i < stage) el.classList.add('done');
-      else if (i === stage) el.classList.add('active');
+  anemone: {
+    name: 'アネモネ — Anemone',
+    emoji: '🌺',
+    draw(svg, cx, cy) {
+      const petalData = [
+        {angle:0,   color:'#6030a0', color2:'#8040c0'},
+        {angle:60,  color:'#5028a0', color2:'#7038b8'},
+        {angle:120, color:'#7038b0', color2:'#9050d0'},
+        {angle:180, color:'#6030a0', color2:'#8040c0'},
+        {angle:240, color:'#5028a0', color2:'#7038b8'},
+        {angle:300, color:'#7038b0', color2:'#9050d0'},
+      ];
+      // Outer petals
+      petalData.forEach(p => {
+        const el = makeSVG('ellipse');
+        el.setAttribute('cx', cx); el.setAttribute('cy', cy - 46);
+        el.setAttribute('rx', '16'); el.setAttribute('ry', '28');
+        el.setAttribute('fill', p.color); el.setAttribute('opacity', '0.82');
+        el.setAttribute('transform', `rotate(${p.angle} ${cx} ${cy})`);
+        el.setAttribute('filter', 'url(#petalShadow)');
+        svg.appendChild(el);
+      });
+      // Inner petals
+      petalData.forEach(p => {
+        const el = makeSVG('ellipse');
+        el.setAttribute('cx', cx); el.setAttribute('cy', cy - 32);
+        el.setAttribute('rx', '12'); el.setAttribute('ry', '20');
+        el.setAttribute('fill', p.color2); el.setAttribute('opacity', '0.88');
+        el.setAttribute('transform', `rotate(${p.angle + 30} ${cx} ${cy})`);
+        svg.appendChild(el);
+      });
+      // Dark center
+      const c1 = makeSVG('circle');
+      c1.setAttribute('cx', cx); c1.setAttribute('cy', cy); c1.setAttribute('r', '18');
+      c1.setAttribute('fill', '#1a1030'); svg.appendChild(c1);
+      // Stamens ring
+      for (let i = 0; i < 14; i++) {
+        const a = (i/14)*Math.PI*2;
+        const stamen = makeSVG('circle');
+        stamen.setAttribute('cx', cx + Math.cos(a)*11);
+        stamen.setAttribute('cy', cy + Math.sin(a)*11);
+        stamen.setAttribute('r', '2.5'); stamen.setAttribute('fill', '#c090f0'); stamen.setAttribute('opacity','0.9');
+        svg.appendChild(stamen);
+      }
+      const cc = makeSVG('circle');
+      cc.setAttribute('cx', cx); cc.setAttribute('cy', cy); cc.setAttribute('r', '7');
+      cc.setAttribute('fill', '#0a0820'); svg.appendChild(cc);
+    }
+  },
+
+  hydrangea: {
+    name: 'アジサイ — Hydrangea',
+    emoji: '💐',
+    draw(svg, cx, cy) {
+      // Many small flower clusters
+      const clusters = [
+        {dx:0,  dy:-32}, {dx:22, dy:-22}, {dx:32, dy:0},
+        {dx:22, dy:22},  {dx:0,  dy:32},  {dx:-22,dy:22},
+        {dx:-32,dy:0},   {dx:-22,dy:-22},
+        {dx:0,  dy:-16}, {dx:14, dy:-10}, {dx:14, dy:10},
+        {dx:0,  dy:16},  {dx:-14,dy:10},  {dx:-14,dy:-10},
+      ];
+      const clusterColors = ['#8090d0','#9090c8','#7080c0','#a090d8','#8898d0'];
+      clusters.forEach((c, i) => {
+        const ccx = cx + c.dx;
+        const ccy = cy + c.dy;
+        const col = clusterColors[i % clusterColors.length];
+        // 4 petals per small flower
+        [0,90,180,270].forEach(angle => {
+          const p = makeSVG('ellipse');
+          p.setAttribute('cx', ccx); p.setAttribute('cy', ccy - 8);
+          p.setAttribute('rx', '5'); p.setAttribute('ry', '8');
+          p.setAttribute('fill', col); p.setAttribute('opacity', '0.82');
+          p.setAttribute('transform', `rotate(${angle} ${ccx} ${ccy})`);
+          p.setAttribute('filter', 'url(#petalShadow)');
+          svg.appendChild(p);
+        });
+        const center = makeSVG('circle');
+        center.setAttribute('cx', ccx); center.setAttribute('cy', ccy); center.setAttribute('r', '4');
+        center.setAttribute('fill', '#d0c8f0'); svg.appendChild(center);
+        const cc2 = makeSVG('circle');
+        cc2.setAttribute('cx', ccx); cc2.setAttribute('cy', ccy); cc2.setAttribute('r', '2');
+        cc2.setAttribute('fill', '#f0e8ff'); svg.appendChild(cc2);
+      });
     }
   }
+};
 
-  function showEmotion(emotion) {
-    const badge = document.getElementById('emotionBadge');
-    badge.textContent = emotion.label;
-    badge.style.color = emotion.color;
-    badge.style.borderColor = emotion.color;
-    badge.classList.add('visible');
+// ============================================================
+// EMOTION MAP
+// ============================================================
+const EMOTION_MAP = [
+  {
+    keywords:['嬉しい','楽しい','幸せ','最高','好き','笑','ありがとう','うまく','できた','一緒','初めて','デート','笑顔','素敵','いい','好調','ハッピー','happy','good'],
+    emotion:'bright', label:'✦ BRIGHT — 喜び', color:'#e06030',
+    flowerKey:'sunflower', stageMsg:['芽が喜んでいます','太陽のように育っています','ひまわりが咲きました']
+  },
+  {
+    keywords:['愛','恋','出会い','記念','大切','宝','大事','忘れない','想い','二人','夫婦','結婚','プロポーズ','ロマン','ドキドキ'],
+    emotion:'romantic', label:'✦ ROMANTIC — 愛', color:'#c84870',
+    flowerKey:'rose', stageMsg:['愛の芽が出ています','想いが深まっています','バラが咲きました']
+  },
+  {
+    keywords:['穏やか','ゆっくり','のんびり','平和','静か','ほっ','安心','ぬくもり','自然','散歩','空','朝','夕','風','普通','今日','感謝'],
+    emotion:'calm', label:'✦ CALM — 穏やか', color:'#5a8860',
+    flowerKey:'daisy', stageMsg:['静かに芽吹いています','穏やかに育っています','デイジーが咲きました']
+  },
+  {
+    keywords:['情熱','頑張','やる気','燃え','挑戦','夢','目標','絶対','負けない','熱い','興奮','ワクワク','最幸','全力'],
+    emotion:'passionate', label:'✦ PASSIONATE — 情熱', color:'#6030a0',
+    flowerKey:'anemone', stageMsg:['力強く芽が出ています','情熱が花を押し上げています','アネモネが咲きました']
+  },
+  {
+    keywords:['悲しい','つらい','しんどい','疲れ','不安','心配','寂しい','落ち込','辛い','難しい','涙','泣','病気','体調'],
+    emotion:'melancholy', label:'✦ MELANCHOLY — 静思', color:'#6070b0',
+    flowerKey:'hydrangea', stageMsg:['雨の中、芽が出ています','静かに育っています','アジサイが咲きました']
+  },
+];
+
+function detectEmotion(text) {
+  let best = null, bestCount = 0;
+  for (const e of EMOTION_MAP) {
+    let count = 0;
+    for (const kw of e.keywords) { if (text.includes(kw)) count++; }
+    if (count > bestCount) { bestCount = count; best = e; }
   }
+  return best || EMOTION_MAP[0];
+}
 
-  function transitionToStage(newStage, emotion) {
-    const stages = ['seedGroup','sproutGroup','growingGroup','bloomGroup'];
+// ============================================================
+// SVG HELPERS
+// ============================================================
+function makeSVG(tag) {
+  return document.createElementNS('http://www.w3.org/2000/svg', tag);
+}
 
-    // Fade out current
-    if (currentStage < stages.length) {
-      const current = document.getElementById(stages[currentStage]);
-      if (current) {
-        current.style.transition = 'opacity 0.6s ease';
-        current.style.opacity = '0';
-      }
-    }
+function drawFlower(flowerKey) {
+  const group = document.getElementById('petalGroup');
+  group.innerHTML = '';
+  const flower = FLOWERS[flowerKey];
+  if (flower) flower.draw(group, 150, 112);
+}
 
-    setTimeout(() => {
-      // Show new stage
-      const next = document.getElementById(stages[newStage]);
-      if (next) {
-        next.style.transition = 'opacity 1s ease, transform 1s ease';
-        next.style.opacity = '1';
-        next.style.transform = 'translate(0,0)';
-      }
+// ============================================================
+// STATE
+// ============================================================
+let currentStage = 0;
+let logs = [];
+let currentPhotoData = null;
+let lastEmotion = null;
 
-      // Color petals if blooming
-      if (newStage === 3 && emotion) {
-        setTimeout(() => updateFlowerColor(emotion), 300);
-        triggerPetalBurst(emotion.petals[0]);
-      }
+const STAGE_TITLES = [
+  'あなたの種、待っています',
+  null, // set by emotion
+  null,
+  null,
+];
+const STAGE_DESCS = [
+  '今日の写真と、一言を届けてください。\n思いが、花の栄養になります。',
+  null,
+  null,
+  '',
+];
 
-      // Update text
-      const data = stageData[newStage];
-      const titleEl = document.getElementById('stageTitle');
-      titleEl.style.opacity = '0';
+// ============================================================
+// UI UPDATES
+// ============================================================
+function updateStageIndicator(stage) {
+  for (let i = 0; i <= 3; i++) {
+    const el = document.getElementById(`stage-${i}`);
+    el.classList.remove('active','done');
+    if (i < stage) el.classList.add('done');
+    else if (i === stage) el.classList.add('active');
+  }
+}
+
+function showEmotion(emotion) {
+  const badge = document.getElementById('emotionBadge');
+  badge.textContent = emotion.label;
+  badge.style.color = emotion.color;
+  badge.style.borderColor = emotion.color;
+  badge.classList.add('visible');
+}
+
+function setStageText(title, desc) {
+  const titleEl = document.getElementById('stageTitle');
+  const descEl = document.getElementById('stageDesc');
+  titleEl.style.opacity = '0';
+  setTimeout(() => {
+    titleEl.textContent = title;
+    titleEl.style.transition = 'opacity 0.5s';
+    titleEl.style.opacity = '1';
+    descEl.textContent = desc;
+  }, 300);
+}
+
+function showFlowerName(name) {
+  const badge = document.getElementById('flowerNameBadge');
+  badge.textContent = name;
+  badge.classList.add('visible');
+}
+
+// ============================================================
+// TRANSITION
+// ============================================================
+function transitionToStage(newStage, emotion) {
+  const stageIds = ['seedGroup','sproutGroup','growingGroup','bloomGroup'];
+
+  // Fade out current
+  const cur = document.getElementById(stageIds[currentStage]);
+  if (cur) { cur.style.opacity = '0'; }
+
+  setTimeout(() => {
+    const next = document.getElementById(stageIds[newStage]);
+    if (next) { next.style.opacity = '1'; }
+
+    if (newStage === 3) {
+      drawFlower(emotion.flowerKey);
       setTimeout(() => {
-        titleEl.textContent = data.title;
-        titleEl.style.transition = 'opacity 0.5s';
-        titleEl.style.opacity = '1';
-      }, 300);
-
-      document.getElementById('stageDesc').textContent = data.desc;
-      updateStageIndicator(newStage);
-      currentStage = newStage;
-
-      if (newStage === 3) {
-        setTimeout(showCompletion, 2000);
-      }
-    }, 600);
-  }
-
-  function triggerPetalBurst(color) {
-    for (let i = 0; i < 20; i++) {
-      setTimeout(() => {
-        const petal = document.createElement('div');
-        petal.className = 'petal-burst';
-        petal.textContent = ['🌸','✿','❀','✾'][Math.floor(Math.random()*4)];
-        petal.style.left = (20 + Math.random()*60) + '%';
-        petal.style.top = '-20px';
-        petal.style.fontSize = (12 + Math.random()*16) + 'px';
-        petal.style.animationDuration = (2 + Math.random()*3) + 's';
-        document.body.appendChild(petal);
-        setTimeout(() => petal.remove(), 5000);
-      }, i * 80);
-    }
-  }
-
-  function showCompletion() {
-    document.getElementById('inputArea').style.display = 'none';
-    document.getElementById('completionArea').classList.add('visible');
-  }
-
-  function addLog(text, photoData, emotion) {
-    logs.push({ text, photoData, emotion });
-
-    const listEl = document.getElementById('logList');
-    const item = document.createElement('div');
-    item.className = 'log-item';
-
-    const thumb = document.createElement('div');
-    thumb.className = 'log-thumb';
-    if (photoData) {
-      const img = document.createElement('img');
-      img.src = photoData;
-      img.style.cssText = 'width:40px;height:40px;border-radius:8px;object-fit:cover;';
-      thumb.appendChild(img);
+        showFlowerName(FLOWERS[emotion.flowerKey].name);
+        triggerPetalBurst();
+      }, 400);
+      setTimeout(showCompletion, 2800);
+      setStageText('満開です', '');
     } else {
-      thumb.textContent = '🌿';
+      const msgIdx = newStage - 1;
+      setStageText(
+        emotion.stageMsg[msgIdx] || '育っています',
+        newStage === 1
+          ? 'あなたの思いが、形になり始めています。\n明日も水をあげてください。'
+          : '蕾が膨らんでいます。\nあなたの日常が、色に変わっています。'
+      );
     }
 
-    const content = document.createElement('div');
-    content.className = 'log-content';
-    const emo = document.createElement('div');
-    emo.className = 'log-emotion';
-    emo.textContent = emotion.label;
-    emo.style.color = emotion.color;
-    const txt = document.createElement('div');
-    txt.className = 'log-text';
-    txt.textContent = text;
+    updateStageIndicator(newStage);
+    currentStage = newStage;
+  }, 700);
+}
 
-    content.appendChild(emo);
-    content.appendChild(txt);
-    item.appendChild(thumb);
-    item.appendChild(content);
-    listEl.insertBefore(item, listEl.firstChild);
-
-    document.getElementById('logHistory').style.display = 'block';
-  }
-
-  function handlePhoto(event) {
-    const file = event.target.files[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      currentPhotoData = e.target.result;
-      const preview = document.getElementById('uploadPreview');
-      preview.src = currentPhotoData;
-      preview.classList.add('visible');
-      document.getElementById('uploadIcon').style.display = 'none';
-      document.getElementById('uploadText').textContent = '写真を選択しました ✓';
-    };
-    reader.readAsDataURL(file);
-  }
-
-  function handleSubmit() {
-    const text = document.getElementById('diaryInput').value.trim();
-    if (!text) {
-      document.getElementById('diaryInput').style.borderColor = '#e88080';
-      setTimeout(() => document.getElementById('diaryInput').style.borderColor = '', 1000);
-      return;
-    }
-
-    const btn = document.getElementById('submitBtn');
-    btn.disabled = true;
-    btn.textContent = '花に届けています…';
-
-    const emotion = detectEmotion(text);
-    showEmotion(emotion);
-    addLog(text, currentPhotoData, emotion);
-
+function triggerPetalBurst() {
+  const petals = ['🌸','✿','❀','✾','🌺','💮'];
+  for (let i = 0; i < 24; i++) {
     setTimeout(() => {
-      const nextStage = Math.min(currentStage + 1, 3);
-      transitionToStage(nextStage, emotion);
+      const p = document.createElement('div');
+      p.className = 'petal-burst';
+      p.textContent = petals[Math.floor(Math.random()*petals.length)];
+      p.style.left = (10 + Math.random()*80) + '%';
+      p.style.top = '-20px';
+      p.style.fontSize = (12 + Math.random()*18) + 'px';
+      p.style.animationDuration = (2.5 + Math.random()*3) + 's';
+      document.body.appendChild(p);
+      setTimeout(() => p.remove(), 6000);
+    }, i * 70);
+  }
+}
 
-      // Reset input
-      document.getElementById('diaryInput').value = '';
-      document.getElementById('charCount').textContent = '0/100';
-      document.getElementById('uploadPreview').classList.remove('visible');
-      document.getElementById('uploadIcon').style.display = 'block';
-      document.getElementById('uploadText').textContent = '今日の写真を追加';
-      document.getElementById('photoInput').value = '';
-      currentPhotoData = null;
+function showCompletion() {
+  const flower = FLOWERS[lastEmotion.flowerKey];
+  document.getElementById('completionSub').innerHTML =
+    `あなたたちの思いが<br>${flower.emoji} <strong>${flower.name}</strong> になりました。<br><br>この花は、あなたの1年間です。`;
+  document.getElementById('inputArea').style.display = 'none';
+  document.getElementById('completionArea').classList.add('visible');
+}
 
-      if (nextStage < 3) {
-        btn.disabled = false;
-        btn.textContent = '水をあげる ✦';
-      }
-    }, 800);
+// ============================================================
+// HANDLERS
+// ============================================================
+function handlePhoto(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    currentPhotoData = e.target.result;
+    const preview = document.getElementById('uploadPreview');
+    preview.src = currentPhotoData;
+    preview.classList.add('visible');
+    document.getElementById('uploadIcon').style.display = 'none';
+    document.getElementById('uploadText').textContent = '写真を選択しました ✓';
+  };
+  reader.readAsDataURL(file);
+}
+
+function handleSubmit() {
+  const text = document.getElementById('diaryInput').value.trim();
+  if (!text) {
+    document.getElementById('diaryInput').style.borderColor = '#e88080';
+    setTimeout(() => document.getElementById('diaryInput').style.borderColor = '', 1000);
+    return;
   }
 
-  function resetDemo() {
-    currentStage = 0;
-    logs = [];
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.textContent = '花に届けています…';
+
+  const emotion = detectEmotion(text);
+  lastEmotion = emotion;
+  showEmotion(emotion);
+  addLog(text, currentPhotoData, emotion);
+
+  setTimeout(() => {
+    const nextStage = Math.min(currentStage + 1, 3);
+    transitionToStage(nextStage, emotion);
+
+    // Reset inputs
+    document.getElementById('diaryInput').value = '';
+    document.getElementById('charCount').textContent = '0/100';
+    document.getElementById('uploadPreview').classList.remove('visible');
+    document.getElementById('uploadIcon').style.display = 'block';
+    document.getElementById('uploadText').textContent = '今日の写真を追加';
+    document.getElementById('photoInput').value = '';
     currentPhotoData = null;
 
-    // Reset SVG stages
-    const stages = ['sproutGroup','growingGroup','bloomGroup'];
-    stages.forEach(id => {
-      const el = document.getElementById(id);
-      if (el) { el.style.opacity = '0'; }
-    });
-    document.getElementById('seedGroup').style.opacity = '1';
+    if (nextStage < 3) {
+      btn.disabled = false;
+      btn.textContent = '水をあげる ✦';
+    }
+  }, 900);
+}
 
-    // Reset petals color
-    const petals = ['p-b1','p-b2','p-b3','p-b4','p-f1','p-f2','p-f3','p-f4'];
-    petals.forEach(id => {
-      const el = document.getElementById(id);
-      if (el) el.setAttribute('fill', '#f0a0a0');
-    });
+function addLog(text, photoData, emotion) {
+  logs.push({ text, photoData, emotion });
+  const listEl = document.getElementById('logList');
+  const item = document.createElement('div');
+  item.className = 'log-item';
 
-    updateStageIndicator(0);
-    document.getElementById('stageTitle').textContent = stageData[0].title;
-    document.getElementById('stageDesc').textContent = stageData[0].desc;
-    document.getElementById('emotionBadge').classList.remove('visible');
-    document.getElementById('logList').innerHTML = '';
-    document.getElementById('logHistory').style.display = 'none';
-    document.getElementById('inputArea').style.display = 'block';
-    document.getElementById('completionArea').classList.remove('visible');
-    document.getElementById('submitBtn').disabled = false;
-    document.getElementById('submitBtn').textContent = '水をあげる ✦';
+  const thumb = document.createElement('div');
+  thumb.className = 'log-thumb';
+  if (photoData) {
+    const img = document.createElement('img');
+    img.src = photoData;
+    img.style.cssText = 'width:40px;height:40px;border-radius:8px;object-fit:cover;';
+    thumb.appendChild(img);
+  } else {
+    thumb.textContent = FLOWERS[emotion.flowerKey]?.emoji || '🌿';
   }
 
-  // Char counter
-  document.getElementById('diaryInput').addEventListener('input', function() {
-    document.getElementById('charCount').textContent = this.value.length + '/100';
-  });
+  const content = document.createElement('div');
+  content.className = 'log-content';
+  const emo = document.createElement('div');
+  emo.className = 'log-emotion';
+  emo.textContent = emotion.label;
+  emo.style.color = emotion.color;
+  const txt = document.createElement('div');
+  txt.className = 'log-text';
+  txt.textContent = text;
 
-  // Enter key shortcut
-  document.getElementById('diaryInput').addEventListener('keydown', function(e) {
-    if (e.key === 'Enter' && e.metaKey) handleSubmit();
+  content.appendChild(emo);
+  content.appendChild(txt);
+  item.appendChild(thumb);
+  item.appendChild(content);
+  listEl.insertBefore(item, listEl.firstChild);
+  document.getElementById('logHistory').style.display = 'block';
+}
+
+function resetDemo() {
+  currentStage = 0; logs = []; currentPhotoData = null; lastEmotion = null;
+
+  ['sproutGroup','growingGroup','bloomGroup'].forEach(id => {
+    document.getElementById(id).style.opacity = '0';
   });
+  document.getElementById('seedGroup').style.opacity = '1';
+  document.getElementById('petalGroup').innerHTML = '';
+
+  updateStageIndicator(0);
+  document.getElementById('stageTitle').textContent = 'あなたの種、待っています';
+  document.getElementById('stageDesc').textContent = '今日の写真と、一言を届けてください。\n思いが、花の栄養になります。';
+  document.getElementById('emotionBadge').classList.remove('visible');
+  document.getElementById('flowerNameBadge').classList.remove('visible');
+  document.getElementById('logList').innerHTML = '';
+  document.getElementById('logHistory').style.display = 'none';
+  document.getElementById('inputArea').style.display = 'block';
+  document.getElementById('completionArea').classList.remove('visible');
+  document.getElementById('submitBtn').disabled = false;
+  document.getElementById('submitBtn').textContent = '水をあげる ✦';
+}
+
+// Char counter
+document.getElementById('diaryInput').addEventListener('input', function() {
+  document.getElementById('charCount').textContent = this.value.length + '/100';
+});
+document.getElementById('diaryInput').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter' && e.metaKey) handleSubmit();
+});
 </script>
 </body>
 </html>
